@@ -1,5 +1,6 @@
 <div class="flex flex-col w-full h-screen bg-indigo-900" x-data="{
-    showSubscribe: false,}">
+    showSubscribe: true,
+    showSuccess: true}">
     <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
         <a class="text-4xl font-bold" href="/">
             <x-application-logo class="w-16 h-16 fill-current"></x-application-logo>
@@ -34,6 +35,15 @@
                 <span class="text-xs text-gray-100">We will send you a confirmation email.</span>
                 <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80">Get In</x-button>
             </form>
+        </div>
+    </div>
+    <div class="fixed top-0 flex items-center w-full h-full bg-gray-900 bg-opacity-60" x-show="showSuccess" x-on:click.self="showSuccess = false" x-on:keydown.escape.window="showSuccess = false">
+        <!-- Sets a darker background, while putting the popup in the middle of the screen. -->
+        <div class="p-8 m-auto bg-green-500 shadow-2xl rounded-xl">
+            <p class="font-extrabold text-center text-white text-9xl animate-pulse">&check;</p>
+            <p class="mt-16 text-5xl font-extrabold text-center text-white">Great!</p>
+            <p class="mt-4 text-3xl text-center text-white">See you in your inbox.</p>
+
         </div>
     </div>
 </div>
