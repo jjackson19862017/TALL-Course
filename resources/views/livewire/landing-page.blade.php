@@ -1,6 +1,7 @@
 <div class="flex flex-col w-full h-screen bg-indigo-900" x-data="{
     showSubscribe: @entangle('showSubscribe'),
     showSuccess: @entangle('showSuccess')}">
+
     <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
         <a class="text-4xl font-bold" href="/">
             <x-application-logo class="w-16 h-16 fill-current"></x-application-logo>
@@ -30,19 +31,26 @@
     <x-modal class="bg-pink-500" trigger="showSubscribe">
         <p class="text-5xl font-extrabold text-center text-white">Let's do it!</p>
         <form class="flex flex-col items-center p-24" wire:submit.prevent="subscribe">
-            <x-input class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="E-mail Address" wire:model.lazy="email"></x-input>
+            <x-input class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="E-mail Address" wire:model.defer="email"></x-input>
 
             <span class="text-xs text-gray-100">
-                {{ $errors->has('email') ? $errors->first('email') : 'We will send you a confirmation email.'}}
+                {{ $errors->has('email') ? $errors->first('email') : 'We will send you a confirmation email.' }}
 
             </span>
-            <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80 hover:bg-blue-800">Get In</x-button>
+            <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80 hover:bg-blue-800">
+                <span class="animate-spin" wire:loading wire:target="subscribe">
+                    &#9696;
+                </span>
+                <span wire:loading.remove wire:target="subscribe">
+                    Get In
+                </span>
+            </x-button>
         </form>
     </x-modal>
     <x-modal class="bg-green-500" trigger="showSuccess">
         <p class="font-extrabold text-center text-white text-9xl animate-pulse">&check;</p>
         <p class="mt-16 text-5xl font-extrabold text-center text-white">Great!</p>
-        @if (request()->has('verified') && request()->verified == 1)
+        @if(request()->has('verified') && request()->verified == 1)
         <p class="mt-4 text-3xl text-center text-white">Thank you for confirming.</p>
         @else
         <p class="mt-4 text-3xl text-center text-white">See you in your inbox.</p>
