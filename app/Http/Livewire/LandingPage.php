@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\URL;
 class LandingPage extends Component
 {
     public $email = 'test@example.com';
+    public $showSubscribe = false;
+    public $showSuccess = false;
 
     protected $rules = [
         'email' => 'required|email:filter|unique:subscribers,email',
@@ -40,7 +42,8 @@ class LandingPage extends Component
             });
 
             $subscriber->notify($notification); // Sends comfirmation from the new instance
-
+            $this->showSubscribe = false;
+            $this->showSuccess = true;
         }, $deadlockRestries = 5);
 
         $this->reset('email');

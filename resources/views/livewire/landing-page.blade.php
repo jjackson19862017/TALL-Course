@@ -1,6 +1,6 @@
 <div class="flex flex-col w-full h-screen bg-indigo-900" x-data="{
-    showSubscribe: false,
-    showSuccess: false}">
+    showSubscribe: @entangle('showSubscribe'),
+    showSuccess: @entangle('showSuccess')}">
     <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
         <a class="text-4xl font-bold" href="/">
             <x-application-logo class="w-16 h-16 fill-current"></x-application-logo>
