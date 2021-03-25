@@ -32,7 +32,7 @@
         <form class="flex flex-col items-center p-24" wire:submit.prevent="subscribe">
             <x-input class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="E-mail Address" wire:model.lazy="email"></x-input>
             <span class="text-xs text-gray-100">We will send you a confirmation email.</span>
-            <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80">Get In</x-button>
+            <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80 hover:bg-blue-800">Get In</x-button>
         </form>
     </x-modal>
     <x-modal class="bg-green-500" trigger="showSuccess">
