@@ -7,6 +7,9 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
+
+
 
 class LandingPage extends Component
 {
@@ -26,6 +29,15 @@ class LandingPage extends Component
             ]);
 
             $notification = new VerifyEmail; // Creates new VerifyEmail instance
+            $notification->createUrlUsing(function ($notifiable) {
+                return URL::temporarySignedRoute(
+                    'subscribers.verify',
+                    now()->addMinutes(30),
+                    [
+                        'subscriber' => $notifiable->getKey(),
+                    ],
+                );
+            });
 
             $subscriber->notify($notification); // Sends comfirmation from the new instance
 
