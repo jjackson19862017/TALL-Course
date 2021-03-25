@@ -42,7 +42,11 @@
     <x-modal class="bg-green-500" trigger="showSuccess">
         <p class="font-extrabold text-center text-white text-9xl animate-pulse">&check;</p>
         <p class="mt-16 text-5xl font-extrabold text-center text-white">Great!</p>
+        @if (request()->has('verified') && request()->verified == 1)
+        <p class="mt-4 text-3xl text-center text-white">Thank you for confirming.</p>
+        @else
         <p class="mt-4 text-3xl text-center text-white">See you in your inbox.</p>
+        @endif
     </x-modal>
 
 </div>
